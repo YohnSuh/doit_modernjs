@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>변수선언</title>
+</head>
+<body>
+    <script>
+        /*
+        변수: 값을 변경할 수 있음; let
+        상수: 값이 바뀌지 않음; const
+        */
+        let result = 10;
+        document.write(result);
+        result = 20;
+        console.log(result);
+        
+        const number = 10;
+        /* number 변숫값에 100을 더한 후 result 변수에 할당하기 */
+        result = number + 100;
+        console.log(result);
+
+        /* 변수 호이스팅 */
+        var x = 10;
+        var sum = x + y;
+        var y = 20;
+        console.log(sum); // NaN
+        // 변수 선언 전에 사용해도 선언한 것과 같은 효과가 나타남
+        // let, const는 이렇게 사용 불가
+
+        // var 변수 재선언하고 재할당하기
+        function add(a,b) {
+            return a + b;
+        }
+        var sum = add(10, 20);
+        console.log(sum);
+        var sum = 100;
+        console.log(sum);
+
+        // let 변수 재선언하고 재할당하기
+        function add(a, b) {
+            return a + b;
+        }
+        let sum2 = add(10, 20);
+        console.log(sum2);
+        // let sum2 = 100; 재선언 불가
+        sum2 = 100; // 재할당 가능
+        console.log(sum2);
+
+        /*
+            var : 재선언, 재할당 가능
+            let : 재선언 불가, 재할당 가능
+            const : 재선언 불가, 재할당 가능
+        */
+    </script>
+</body>
+</html>
