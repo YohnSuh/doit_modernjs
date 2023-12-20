@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자료형 변환</title>
+</head>
+<body>
+    <script>
+        // 자동형변환
+        let one = "20";
+        let two = 10;
+        console.log(one + two); // 10이 문자열로 변환되어 2010이 됨
+        console.log(one - two); // 곱셈, 나누기, 뺄셈은 숫자끼리만 가능하므로 20이 숫자로 변환되어 10이 됨
+
+        // Number(): 문자열 "10"을 숫자 10으로 변환 가능, null, undefind를 포함하여 모든 자료형을 숫자로 변환
+        console.log(Number(true)); // 1
+        console.log(Number(false)); // 0
+        console.log(Number(null)); // 0
+        console.log(Number(undefined)); // NaN
+
+        // parseInt(): 소괄호 안의 값을 정수로 변환
+        // parseFloat(): 소괄호 안의 값을 실수로 변환
+        let userInput = prompt("아무 숫자나 입력하세요");
+        console.log(typeof(userInput)); // prompt창에서 입력받은 값은 string으로 인식됨
+        console.log(parseInt(userInput)); // parseInt를 사용하면 정수로 변환함
+        let bodyHeat = prompt("현제 체온은?");
+        console.log(parseFloat(bodyHeat)); // 실수를 입력했을 때 해당 값을 실수인 숫자로 변환함
+
+        // toString(): null과 undefined를 제외한 나머지 자료형을 문자열로 변환
+        // 값.toString()
+        // ()안의 값을 지정하지 않으면 기본적으로 10진수로 변환하며 2진수, 8진수 형태의 문자열로 바꿀 때는 ()안에 2나 8을 적으면 됨
+        let num = 10;
+        let isEmpty = true;
+        console.log(num.toString());    // 10
+        console.log(isEmpty.toString());// true
+        console.log(num.toString(2));   // 1010
+
+        // String(): null, undefined까지 모두 포함해서 문자열로 변환함
+        // String(값)
+        let isFull = false;
+        let initValue = null;
+        console.log(String(isFull)); // false
+        console.log(String(initValue)); // null
+
+        // 간단하게 숫자나 문자열로 변환할 때는 값의 앞에 + 기호를 붙이면 자동으로 문자열이 숫자로 변환되고,
+        // 숫자에 빈 문자열을 연결하면 숫자가 문자열로 변환됨
+        let userNum = "20";
+        console.log(typeof(userNum));   // string
+        userNum = +userNum;
+        console.log(typeof(userNum));   // number
+
+        // Boolean(): 다른 유형의 데이터를 논리형 데이터로 변환함
+        // Boolean(값)
+        // true가 되는 데이터: 0이 아닌 숫자형, 빈 문자열이 아닌 모든 문자열
+        // false가 되는 데치터: 0, 빈 문자열, undefined
+        console.log(Boolean(5 * 4));     // true
+        console.log(Boolean("HEllO"));   // true
+        console.log(Boolean(undefined)); // false
+
+    </script>
+</body>
+</html>
