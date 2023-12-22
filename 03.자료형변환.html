@@ -58,6 +58,10 @@
         console.log(Boolean("HEllO"));   // true
         console.log(Boolean(undefined)); // false
 
+        // 섭씨 온도 화씨로 변환하기
+        let fah = parseFloat(prompt("변환할 화씨온도를 입력해주세요."));
+        let cel = ((fah - 32) / 1.8).toFixed(1); // toFixed(소숫점 자릿수);
+        alert(`화씨온도 ${fah}도는 섭씨온도 ${cel}입니다.`);
     </script>
 </body>
 </html>
