@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문</title>
+</head>
+<body>
+    <script>
+        // if (조건) {조건이 true일 때 실행할 명령}
+        let x = 10;
+        if (x > 5) {
+            console.log(`${x}는 5보다 큽니다.`);
+        }
+        // if문의 조건이 true가 아닐 경우 if문을 건너뛰고 다음 명령을 실행함
+        let y = 10;
+        if (y < 5) {
+            console.log(`${y}는 5보다 작습니다.`);
+        }
+        y -= 5;
+        console.log(y);
+
+        // if (조건) {조건이 true일 때 실행할 명령}
+        // else {조건이 false일 때 실행할 명령}
+        let userInput = prompt("이름을 입력하세요");
+        if (userInput === null) {
+            alert("취소했습니다.");
+        } else {
+            alert(userInput);
+        }
+        // 취소 버튼을 클릭 했을 때 처리해야 할 명령이 없고,
+        // 사용자가 값을 입력했는지 여부만을 확인할 경우
+        if (userInput !== null) {
+            alert(userInput);
+        }
+
+        // 프롬프트 창에서 입력한 점수를 받아 90점 이상이면 A학점, 80점 이상이면 B학점, 그 외 점수는 C학점을 주기
+        // 취소 버튼을 클릭햇을 경우를 대비하여 입력값이 null이 아닐 때만 실행
+        let score = prompt("점수를 입력하세요.");
+        if (score != null) {
+            if (parseInt(score) >= 90) {
+                console.log("A학점");
+            } else if (parseInt(score) >= 80) {
+                console.log("B학점");
+            } else {
+                console.log("C학점");
+            }
+        }
+        // if문이나 else문에서 명령이 한 줄이면 중괄호를 생략하여 작성하기도 함
+        // if (userInput !== null) alert(userInput);
+
+        // 조건연산자(삼항연산자): 조건이 복잡하지 않고 true와 false가 명확할 경우 조건연산자만으로 조건을 체크 가능
+        // (조건) ? true일 때 실행할 명령 : false일 때 실행할 명령
+        let num1 = 3, num2 = 5;
+        if(num1 < num2) {
+            small = num1;
+        } else {
+            small = num2;
+        }
+        // ==
+        small = (num1 < num2) ? num1 : num2;
+        console.log(small);
+
+        // 짝수와 홀수를 구별하는 프로그램 만들기
+        let userNumber = prompt("숫자를 입력해주세요.");
+        if (userNumber !== null) {
+            userNumber = parseInt(userNumber); // 정수로 변환하기
+            (userNumber % 2 === 0) ? alert("짝수") : alert("홀수");
+        }
+
+        // switch문: 체크해야 할 조건값이 많을 경우에 사용;
+        //           switch문에 있는 조건은 case 중 하나에만 일치하고, case를 실행한 후에는 완전히 switch문을 빠져나옴.
+        //           지정해 놓은 case문에 맞지 않으면 default문에 있는 문장을 실행
+        /*
+            switch (조건) {
+                case 값: 문장
+                break;
+                case 값: 문장
+                break;
+                ...
+                default: 문장
+            }
+        */
+        let subject = prompt("신청할 과목의 숫자를 입력하세요. 1-html, 2-css, 3-javascript");
+        if (subject !== null) {
+            switch (subject) {
+                case "1":
+                document.write("html을 신청했습니다.");
+                break;
+                case "2":
+                    document.write("css를 신청했습니다.");
+                    break;
+                case "3":
+                    document.write("javascript를 신청했습니다.");
+                    break;
+                default:
+                    document.write("잘못 입력했습니다. 다시 입력해주세요.");
+            }
+        }
+
+        // 2개 이상의 조건 체크할 경우 논리 연산자를 사용하여 조건식을 만들어야 함.
+        /*
+            OR 연산자(||): 2개의 피연산자 중 하나라도 true가 있으면 결괏값은 true
+            AND 연산자(&&): 2개의 피연산자 중 false가 하나라도 있으면 결괏값은 false
+            NOT 연산자(!=): 피연산자의 값고 정반대의 값을 가짐
+        */
+        // 입력한 숫자가 모두 짝수인지 체크하기
+        const number1 = parseInt(prompt("첫 번째 양의 정수: "));
+        const number2 = parseInt(prompt("두 번째 양의 정수: "));
+        let str;
+        if(number1 !== null && number2 !== null) {
+            (number1 % 2 === 0 && number2 % 2 === 0) ? str = "두 수 모두 짝수입니다." : str = "짝수가 아닌 수가 있습니다.";
+        }
+        alert(str);
+    </script>
+</body>
+</html>
