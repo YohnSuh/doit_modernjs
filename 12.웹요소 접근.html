@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 요소 접근하기</title>
+</head>
+<body>
+    <h1>My Profile</h1>
+    <div id="profile">
+        <img src="images/pf.png" alt="도레미">
+        <div id="desc">
+            <p class="user">이름 : 도레미</p>
+            <p class="user">주소 : somewhere</p>
+            <p class="user">연락처 : 1234-5678</p>
+        </div>
+    </div>
+    <script>
+        // document.querySelector(선택자) : 지정한 선택자를 사용한 요소 중에서 첫 번째 요소에 접근
+        // document.querySelectorAll(선택자) : 여러 개의 요소를 가져올 때 사용; 클래스 선택자를 사용하면 같은 클래스 이름을 사용하 요소를 모두 가져와 노드리스트 형태로 저장
+        document.querySelectorAll(".user")[2]; // user클래스를 사용하는 요소 중 세 번째 요소에 접근
+        /*
+            - getElementById: id 선택자를 기준으로 접근
+            - getElementsByClassName: class 선택자를 기준으로 접근
+            - getElementsByTagName: tag이름을 기준으로 접근
+            => querySelector(), querySeletorAll() 메서드가 나오기 전 사용
+        */
+
+        // 웹 요소의 내용 가져오기
+        // 웹요소.innerText: 웹 브라우저 창에 보이는 내용만 가져옴; 화면에서 감춘 요소의 내용과 코드의 여러 공백 출력x.
+        // 웹요소.innerHTML: 웹 브라우저 창에 어떻게 보이는지와 상관없이 "태그"와 내용을 함께 가져와서 보여줌.
+        // 웹요소.textContent: 요소의 내용을 소스에 있는대로 보여줌; 감춘 요소와 공백 등 같이 출력.
+
+        // 웹 요소의 내용 수정하기
+        // 웹요소.innerText = 내용 : 텍스트 내용을 바꿀 때 사용
+        // 웹요소.innerHTML = 내용 : html태그가 포함된 내용을 바꿀 때 사용
+        // 웹요소.textContent = 내용 : 텍스트 내용을 바꿀 때 사용
+        // 이미지요소.src = 이미지 파일 : 이미지를 변경할 때 사용
+
+        // DOM요소 내용과 속성 수정하기
+        const title = document.querySelector("h1");
+        const userName = document.querySelector("#desc p");
+        const pfImg = document.querySelector("#profile img");
+        title.onclick = function() {
+            title.innerText = "프로필";
+        }
+        userName.onclick = () => userName.innerHTML = `이름 : <b>민들레</b>`;
+        pfImg.onclick = () => pfImg.src = "images/pf2.png";
+    </script>
+</body>
+</html>
