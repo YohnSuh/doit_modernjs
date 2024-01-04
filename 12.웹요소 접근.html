@@ -46,6 +46,16 @@
         }
         userName.onclick = () => userName.innerHTML = `이름 : <b>민들레</b>`;
         pfImg.onclick = () => pfImg.src = "images/pf2.png";
+
+        // css 속성에 접근하고 수정하기
+        // 요소.style.속성명
+        title.onclick = ()=> {
+            title.style.backgroundColor = "black";
+            title.style.color = "white";
+        }
+        userName.onclick = () => {
+            userName.style.color = "red";
+        }
     </script>
 </body>
 </html>
