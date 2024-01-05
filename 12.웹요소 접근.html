@@ -4,16 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>웹 요소 접근하기</title>
+    <style>
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .user {color: purple;}
+        .clicked {background: yellow;}
+        .addClass {color:blue;}
+
+        /* 다크모드로 만드는 토글 */
+        .dark {
+            background-color: black;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h1>My Profile</h1>
     <div id="profile">
         <img src="images/pf.png" alt="도레미">
         <div id="desc">
-            <p class="user">이름 : 도레미</p>
+            <p class="user clicked">이름 : 도레미</p>
             <p class="user">주소 : somewhere</p>
             <p class="user">연락처 : 1234-5678</p>
         </div>
+    </div>
+    <div id="toggle-box">
+        <button>다크 모드로 바꾸기</button>   
+    </div>
+    <div id="contents">
+        <p>classList와 toggle 메서드를 사용하면 필요한 스타일을 껐다 켰다할 수 있기 때문에 다양하게 활용할 수 있습니다. </p>
+        <p>오른쪽 위에 있는 버튼을 클릭할 때마다 다크 모드, 또는 라이트 모드로 바뀝니다.</p>  
     </div>
     <script>
         // document.querySelector(선택자) : 지정한 선택자를 사용한 요소 중에서 첫 번째 요소에 접근
@@ -55,6 +77,38 @@
         }
         userName.onclick = () => {
             userName.style.color = "red";
+        }
+
+        // classList: 요소에 적용한 클래스 스타일을 모두 모아놓은 프로퍼티
+        // document.querySelector(선택자).classList를 작성하면 요소에 적용된 모든 클래스 스타일이 표시됨
+        // 요소.classList.add(클래스명): 클래스 스타일을 추가할 때
+        // 요소.classList.remove(클래스명): 클래스 스타일을 삭제할 때
+        title.onclick = () => {
+            title.classList.add("addClass");
+        }
+
+        // contains(): 특정 클래스 스타일이 있는 요소를 찾아주는 함수
+        // 요소.classList.contains(클래스명)
+        // .addClass 스타일이 이쓴지 확인한 수 없으면 .addClass를 추가하고 있으면 .addClass를 삭제하는 코드
+        title.onclick = () => {
+            if(!title.classList.contains("addClass")) {
+                title.classList.add("addClass");
+            } else {
+                title.classList.remove("addClass");
+            }
+        }
+        // => title클릭 시 addClass가 생기고 그 상태에서 한 번 더 클릭 시 addClass가 삭제 됨
+
+        // toggle(): 클릭할 때마다 특정 클래스를 추가하거나 삭제하기를 반복할 경우 사용하는 함수
+        // 요소.classList.toggle(클래스명)
+        title.onclick = () => {
+            title.classList.toggle("addClass");
+        }
+        
+        // 버튼을 클릭해서 다크모드 만들기
+        const btn = document.querySelector("button");
+        btn.onclick = () => {
+            document.body.classList.toggle("dark");
         }
     </script>
 </body>
