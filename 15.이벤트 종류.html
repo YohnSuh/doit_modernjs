@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 종류</title>
+    <style>
+        #result {
+            text-align: center;
+            font-weight:bold;
+            font-size:1.5em;
+            color:crimson;
+        }
+        #container {
+            width:500px;
+            margin:10px auto;
+        }
+        form fieldset{
+            margin-bottom:25px; 
+        }
+        form legend{
+            font-size:15px;
+            font-weight:600; 
+        }
+
+        label.reg {
+            font-size:14px;
+            width:110px;
+            color:#390;
+            font-weight:bold;		
+            float:left;
+            text-align:right;
+            margin-right:10px;
+        }	 
+        form ul li{
+            list-style:none; 
+            margin: 15px 0;	
+            font-size:14px;	
+        }
+        #selectAll {
+            cursor:pointer;
+        }
+        button {
+            width:100%;
+            padding:10px 20px;
+        }
+
+        button:hover {
+            background:#222;
+            color:#fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button>click</button>
+    <div id="result"></div>
+
+    <div id="container">
+		<h1>수강신청</h1>
+		<form name="testForm">
+			<fieldset>
+				<legend>신청인</legend>
+				<ul>
+					<li>       	
+						<label class="reg" for="userName">이름</label>
+						<input type="text" id="userName" name="userName" maxlength="50">               
+					</li>
+					<li>
+						<label class="reg" for="class">학과</label>
+						<select name="major" id="major">
+							<option>---- 학과 선택 ----</option>
+							<option value="archi">건축공학과</option>
+							<option value="mechanic">기계공학과</option>
+							<option value="indust">산업공학과</option>
+							<option value="elec">전기전자공학과</option>
+							<option value="computer">컴퓨터공학과</option>
+							<option value="chemical">화학공학과</option>
+						</select>
+					</li>
+				</ul>				
+			</fieldset>
+			<fieldset>
+				<legend>신청 과목</legend>
+				<p>이 달에 신청할 과목을 선택하세요.</p>
+				<label><input type="radio" name="subject" value="speaking">회화</label>
+				<label><input type="radio" name="subject" value="grammar">문법</label>
+				<label><input type="radio" name="subject" value="writing">작문</label>       
+			</fieldset>
+			<fieldset>
+				<legend>메일링</legend>
+				<p>메일로 받고 싶은 뉴스 주제를 선택해 주세요</p>
+				<label><input type="checkbox" id="new" name="mailing" value="news">해외 단신</label>
+				<label><input type="checkbox" id="dialog" name="mailing" value="dialog">5분 회화</label>
+				<label><input type="checkbox" id="pops" name="mailing" value="pops">모닝팝스</label>
+			</fieldset>
+		</form>
+        <button id="send">전송하기</button>
+	</div>
+
+    <script>
+        // 문서 로딩 이벤트
+        /*
+            - abort: 웹 문서가 완전히 로딩되기 전에 불러오기를 멈췄을 때 이벤트 발생
+            - error: 문서가 정확히 로딩되지 않았을 때 이벤트 발생
+            - load: 문서 로딩이 끝났을 때 이벤트 발생
+            - resize: 문서 화면의 크기가 바뀌었을 때 이벤트 발생
+            - scroll: 문서 화면이 스크롤 되었을 때 이벤트 발생
+            - unload: 문서를 벗어날 때 이벤트 발생
+        */
+       window.load = alert("hello");
+
+       // 마우스 이벤트
+       /*
+            - click: 사용자가 HTML요소를 클릭했을 때 이벤트 발생
+            - dbclick: 사용자가 HTML요소를 더블클릭했을 때 이벤트 발생
+            - mousedown: 사용자가 요소에서 마우스 버튼을 눌렀을 때 이벤트 발생
+            - mousemove: 사용자가 요소에서 마우스 포인터를 움직일 때 이벤트 발생
+            - mouseover: 마우스 포인터를 요소 위로 옮길 대 이벤트 발생
+            - mouseout: 마우스 포인터가 요소를 벗어날 때 이벤트 발생
+            - mouseup: 요소 위에 올려놓은 마우스 버튼에서 손을 뗄 때 이벤트 발생
+       */
+        
+        // 버튼 클릭 시 문서의 배경색 바꾸기
+        const btn = document.querySelector("button");
+        btn.onclick = () => {
+            document.body.style.backgroundColor = "powderblue";
+        }
+
+        // 키보드에서 키를 눌렀을 때 어떤 키인지 알아내기
+        const body = document.body;
+        const result = document.querySelector("#result");
+
+        body.addEventListener("keydown", (e) => {
+            result.innerText = `coded: ${e.code}, key: ${e.key}`;
+        });
+
+        // 폼 이벤트
+        /*
+            - blur: 폼 요소에 포커스를 잃었을 때 이벤트 발생
+            - change: 목록이나 체크 상태 등이 변경되었을 때 이벤트 발생; input, select, textarea 태그에서 사용
+            - focus: 폼 요소에 포커스를 놓았을 때 이벤트 발생; label, select, textarea, button 태그에서 사용
+            - reset: 폼이 리셋되었을 때 이벤트 발생
+            - submit: submit버튼을 클릭했을 때 이벤트 발생
+        */
+        // 옵션 선택 시 change이벤트 발생, change이벤트에서 displaySelect() 함수 연결
+        const selectMenu = document.querySelector("#major");
+
+        function displaySelect() {
+            let selectedText = selectMenu.options[selectMenu.selectedIndex].innerText;
+            alert(`${selectedText}을/를 선택했습니다.`);
+        }
+        selectMenu.onchange = displaySelect;
+    </script>
+</body>
+</html>

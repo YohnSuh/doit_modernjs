@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 처리하기</title>
+    <style>
+        .toggle {
+            background-color: lightpink;
+            color: deeppink;
+            display: inline-block;
+        }
+        #modal {
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            background-color:#ccc;
+            width:300px;
+            padding:20px;
+            border-radius:5px;
+            position:fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        #modal.on {
+            display: block;
+        }
+        .pfBtn {
+            display: block;
+            background-color:#06f;
+            color:#fff;
+            border:none;
+            border-radius:5px;
+            padding:15px;
+            margin: 100px auto;
+            cursor: pointer;
+        }
+        h1 {
+            position: relative;
+            font-size:2rem;  
+            margin-bottom:20px ;
+        }
+        #close {
+            background-color:#fff;
+            color:#ccc;
+            font-size:20px;
+            border:none;
+            outline:none;
+            position:absolute;
+            top:10px;
+            right: 0;
+        }
+        #profile {
+            display:flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            border:1px solid #ccc;
+            padding:10px;
+            background-color: white;
+        }
+        #desc {
+            margin:10px 20px;
+        }
+        .modal p {
+            font-size:0.8rem;
+            line-height:1.5;
+        }
+        
+    </style>
+</head>
+<body>
+    <button onclick = "alert('hello')">click</button>
+    <button class="changeBtn">Text</button>
+    <input type="text" placeholder="텍스트를 입력하세요.">
+    <button class="toggleBtn" style="display: block;background-color: black;color:white; border: 0; margin-top: 10px;padding:8px 12px;">Toggle</button>
+    <p>Background-color is changed.</p>
+
+    <div id="contents">
+        <input type="text" id="word">
+        <button id="bttn">글자 수 확인</button>
+    </div>
+    <div id="result"></div>
+
+    <button class="pfBtn">프로필</button>
+    <div id="modal" class="on">
+        <h1 id="title">My Profile<button id="close">&times;</button></h1>
+        <div id="profile">
+            <img src="images/pf.png" alt="도레미">
+            <div id="desc">
+                <p class="user">이름 : 도레미</p>
+                <p class="user">주소 : somewhere</p>
+                <p class="user">연락처 : 1234-5678</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // HTML태그에 함수 연결하기
+        // <태그 on이벤트명 = "함수명">
+
+        // 웹 요소에 함수 연결하기
+        // 요소.on이벤트병 = 함수
+        // 버튼을 클릭해서 문서의 배경색 바꾸기
+        const btnBg = document.querySelector("button");
+        // btnBg.onclick = () => {
+        //     document.body.style.backgroundColor = "powderblue";
+        // }
+        // 함수 정의 후 함수 이름만 지정하여 실행하기; 함수 이름 뒤에 소괄호 사용x
+        function changeBg() {
+            document.body.style.backgroundColor = "pink";
+        }
+        btnBg.onclick = changeBg;
+
+        // 버튼 클릭시 배경색과 글자색이 변하고, 문서의 텍스트를 직접 입력하는 코드 작성
+        const changeBtn = document.querySelector(".changeBtn");
+        const text =  document.querySelector("input");
+
+        function changeText() {
+            text.style.backgroundColor = "black";
+            text.style.color = "white";
+        }
+        changeBtn.onclick = changeText;
+
+        // => on이벤트명은 하나의 이벤트만 연결 가능!
+
+        // 이벤트 리스너로 이벤트 처리하기: 여러개 이벤트 연결 가능
+        // 요소.addEventListener("이벤트", 함수, 캡처 여부);
+        /*
+            - 요소: 이벤트가 발생한 요소
+            - 이벤트: 이벤트 유형으로 on을 붙이지 않고 사용
+            - 함수: 이벤트가 발생했을 때 실행할 함수 지정; 기존에 있는 함수를 사용하거나 직접 익명함수를 작성하여 사용
+            - 캡처 여부: 이벤트를 캡처링하는지의 여부를 지정; true면 캡처링, false면 버블링을 한다는 의미로 기본값은 false
+        */
+        // 이벤트 리스너를 사용하여 문서 배경 바꾸기
+        btnBg.addEventListener("click", changeBg);
+        // 익명함수로 작성하기
+        btnBg.addEventListener("click", function() {
+            document.body.style.backgroundColor = "lightyellow";
+        });
+        // btnBg.addEventListener("click", () => {});로 사용가능
+
+        // 버튼 클릭 시 문서의 배경색과 글자색을 토글하는 소스 작성
+        const toggleBtn = document.querySelector(".toggleBtn");
+        const content = document.querySelector("p");
+        toggleBtn.addEventListener("click", () => {
+            content.classList.toggle("toggle");
+        });
+        // 입력한 단어 길이 알아내기
+        const bttn = document.querySelector("#bttn");
+        bttn.addEventListener("click", () => {
+            const word = document.querySelector("#word").value; // 텍스트 필드의 내용
+            const result = document.querySelector("#result");   // 결괏값을 표시할 영역
+            let count = word.length; // 문자열의 길이
+
+            result.innerText = count;
+        });
+
+        // modal 박스 만들기
+        const openedBtn = document.querySelector(".pfBtn");
+        const modalBox = document.querySelector("#modal");
+        const closedBtn = document.querySelector("#close");
+
+        openedBtn.addEventListener("click", () => {
+            modalBox.classList.add("on");
+        });
+        closedBtn.addEventListener("click", () => {
+            modalBox.classList.remove("on");
+        });
+    </script>
+</body>
+</html>
