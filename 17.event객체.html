@@ -39,14 +39,22 @@
             - target: 이벤트가 발생한 대상을 반환
             - timeStamp: 이벤트가 발생한 시간을 밀리초 단위로 반환
             - type: 발생한 이벤트 이름을 반환
-            - which: 키보드와 관련된 이베트가 발생했을 때 키의 유니코드값을 반환
-            -preventDefault: 취소할 수 있을 경우, 기본 동작을 취소함
+            - which: 키보드와 관련된 이벤트가 발생했을 때 키의 유니코드값을 반환
+            - preventDefault: 취소할 수 있을 경우, 기본 동작을 취소함
         */
 
         const box = document.querySelector("#box");
-        box.addEventListener("click", (e) => {
-            alert(`event발생 위치: ${e.pageX}, ${e.pageY}`);
-        });
+        // box.addEventListener("click", (e) => {
+        //     alert(`event발생 위치: ${e.pageX}, ${e.pageY}`);
+        // });
+
+        box.onclick = function(e) {
+            if(e.pageX > 120) {
+                box.style.background = "black";
+            } else {
+                box.style.background = "unset";
+            }
+        }
     </script>
 </body>
 </html>
