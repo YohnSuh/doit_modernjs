@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 전파</title>
+</head>
+<body>
+    <div onclick="console.log('div')">
+        DIV
+        <section onclick="console.log('section')">
+            SECTION
+            <p  onclick="console.log('p')">
+                P
+            </p>
+        </section>
+    </div>
+    <script>
+        // 이벤트 버블링: 특정 요소에서 이벤트가 발생햇을 때 그 이벤트가 해당 요소뿐만 아니라,
+        //               그 요소의 부모 요소, 부모 요소의 부모 요소에도 똑같이 발생한 것으로 간주하는 것
+    </script>
+</body>
+</html>
