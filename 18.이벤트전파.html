@@ -54,9 +54,10 @@
 
         for(let element of elements) {
             element.addEventListener("click", e => {
-                console.log(`event.target: ${event.target}, event.currentTarget: ${event.currentTarget}`);
+                console.log(`event.target: ${event.target}, event.currentTarget: ${event.currentTarget}, tagName: ${event.target.tagName}`);
             });
         }
+        // event.target: 실제 이벤트가 시작된 ‘타깃’ 요소. 버블링이 진행되어도 변하지 않음.
     </script>
 </body>
 </html>
