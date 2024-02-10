@@ -49,15 +49,25 @@
     <script>
         // 이벤트 버블링: 특정 요소에서 이벤트가 발생햇을 때 그 이벤트가 해당 요소뿐만 아니라,
         //               그 요소의 부모 요소, 부모 요소의 부모 요소에도 똑같이 발생한 것으로 간주하는 것
+        //               아래에서 위로(자식요소에서 부모요소로) 이벤트 전파
 
         const elements = document.querySelectorAll('*');
 
-        for(let element of elements) {
-            element.addEventListener("click", e => {
-                console.log(`event.target: ${event.target}, event.currentTarget: ${event.currentTarget}, tagName: ${event.target.tagName}`);
-            });
-        }
+        // for(let element of elements) {
+        //     element.addEventListener("click", e => {
+        //         console.log(`event.target: ${event.target}, event.currentTarget: ${event.currentTarget}, tagName: ${event.target.tagName}`);
+        //     });
+        // }
         // event.target: 실제 이벤트가 시작된 ‘타깃’ 요소. 버블링이 진행되어도 변하지 않음.
+
+        // 이벤트 캡처링: 웹 요소에서 이벤트가 발생하면 최상위 요소에서 시작해서 이벤트가 발생한 요소까지 차례대로 이벤트가 전파되는 방식
+        //               위에서 아래료(부모요소에서 자식요소로) 이벤트 전파
+
+        for(let element of elements) {
+            element.addEventListener("click", e => 
+                console.log(`event.target: ${e.target.tagName}, event.currentTarget: ${e.currentTarget.tagName}`), true
+            );
+        }
     </script>
 </body>
 </html>
