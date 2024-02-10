@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마무리문제(노드)</title>
+    <style>
+        #container {
+  width:400px;
+  margin:10px;
+}
+#userInput {
+  list-style: none;
+  width:400px;
+}
+#userInput label {
+  width:50px;
+  margin-right:10px;
+  line-height:30px;
+}
+#userInput input {
+  width:200px;
+  height:30px;      
+  margin-bottom: 10px;
+}
+button {
+  width:300px;      
+  padding: 15px;
+}
+#attendant {
+  margin-top:20px;
+}
+table {
+  border:1px solid #ccc;
+  border-collapse:collapse;
+}
+th, td {
+  border:1px solid #ccc;
+  padding:10px;            
+}
+th:first-of-type {
+  width:150px;
+}
+th:last-of-type {
+  width:250px;
+}
+
+
+#bttn {
+  background-color:#ddd;
+  padding:1rem 3rem;
+  border:1px solid #222;
+  border-radius:5px;
+  box-shadow:1px 1px 2px #222;
+}
+
+/* noti-box로 우측 하단에 고정해 놓고, .noti를 그 안에 넣을 것! */
+#noti-box {
+  position:fixed;
+  top:20px;
+  right:20px;  
+}
+.noti {
+  margin:1rem;
+  padding:1rem;
+  background-color:#eee;
+  border-left:3px solid #222;
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>참가자 명단</h1>
+        <form>
+          <ul id="userInput">  
+            <li>
+              <label for="username">이 름</label>
+              <input type="text" id="username">
+            </li>    
+            <li>
+              <label for="major">전 공</label>
+              <input type="text" id="major">
+            </li>           
+          </ul>
+          <button>등록하기</button>      
+        </form>
+        
+        <table id="attendant">
+          <thead>
+            <tr>
+              <th>이 름</th>
+              <th>전 공</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="noti-box"></div>
+    <button id="bttn">클릭!</button>
+    <script>
+        const userName = document.querySelector("#username");
+        const major = document.querySelector("#major");
+        const button = document.querySelector("form button");
+
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            let tbody = document.querySelector("#attendant tbody");
+            let newTr = document.createElement("tr");
+            let nameTd = document.createElement("td");
+            let mjrTd = document.createElement("td");
+
+            nameTd.innerHTML =  userName.value;
+            userName.value = "";
+
+            mjrTd.innerHTML = major.value;
+            major.value = "";
+
+            newTr.appendChild(nameTd);
+            newTr.appendChild(mjrTd);
+
+            tbody.appendChild(newTr);
+        });
+
+        const btn = document.querySelector("#bttn");
+        const msgBox = document.querySelector("#noti-box");
+
+        btn.addEventListener("click", () => {
+            const msg = document.createElement("div");
+            msg.classList = "noti";
+            msg.innerText = "check your message";
+            msgBox.appendChild(msg);
+
+            setTimeout(() => {
+                msg.remove();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
