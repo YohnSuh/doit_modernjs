@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window객체</title>
+</head>
+<body>
+    <button>팝업창</button>
+    <script>
+        /*
+            [ window 객체의 프로퍼티 ]
+            - document: 웹 브라우저 창에 표시된 웹 문서에 접근
+            - frameElement: 현재 창이 다른 요소 안에 포함 되어 있으면 해당 요소를, 포함되지 않으면 null을 반환
+            - innerHeight: 내용 영역의 높이
+            - inerWidth: 내용 영역의 너비
+            - localStorage: 웹 브라우저 창에서 데이터를 저장하는 로컬 스토리지에 접근
+            - location: window 객체의 위치/현재 URL을 표시
+            - name: 웹 브라우저 창의 이름을 가져오거나 수정
+            - outerHeight: 웹 브라우저 창의 바깥쪽(외부) 높이
+            - outerWidth: 웹 브라우저 창의 바깥쪽(외부) 너비
+            - pageXOffset: 스크롤 했을 때 수평으로 이동하는 픽셀 수로, scrollX와 같음
+            - pageUOffset: 스크롤 했을 때 수직으로 이동하는 픽셀 수로, scrollY와 같음
+            - parent: 현재 창이나 서브 프레임의 부모
+            - screenX: 웹 브라우저 창의 왼쪽 테두리가 모니터의 왼쪽 테두리에서부터 떨어져 있는 거리
+            - screenY: 웹 브라우저 창의 위쪽 테두리가 모니터의 위쪽 테두리에서부터 떨어져 있는 거리
+            - scrollX: 스크롤 했을 때 수평으로 이동하는 픽셀 수
+            - scrollY: 스크롤 했을 때 수직으로 이동하는 픽셀 수
+            - sessionStorage: 웹 브라우저 창에서 데이터를 저장하는 세션 
+        */
+       /*
+            [ window 객체의 메서드 ]
+            - alert(): 알림 창을 표시
+            - blur(): 창에서 포커스를 제거
+            - close(): 현재 창을 닫음
+            - confirm(): '확인'과 '취소' 버튼이 있는 창을 표시
+            - focus(): 현재 창에 포커스를 맞춤
+            - moveBy(): 현재 창을 지정한 크기만큼 이동
+            - moveTo(): 현재 창을 지정한 좌표로 이동
+            - open(): 새로운 창을 엶
+            - postMessage(): 다른 창으로 메세지 전달
+            - print(): 현재 문서를 인쇄
+            - prompt(): 프롬프트 창에 입력한 텍스트를 반환
+            - resizeBy(): 지정한 크기만큼 현재 크기를 조절
+            - resizeTo(): 웹 브라우저 창의 크기를 지정한 크기만큼씩 늘리거나 줄임
+            - scroll(): 문서에서 특정 위치로 스크롤
+            - scrollBy(): 지정한 크기만큼씩 스크롤
+            - scrollTo(): 지정한 위치까지 한 번에 스크롤
+            - setCursor(): 현재 창의 커서를 변경
+            - showModalDialog(): 모달 창을 엶
+            - sizeToContent(): 내용에 맞게 창의 크기를 맞춤
+            - stop(): 웹 문서 가져오기를 멈춤
+       */
+        // 팝업창 만들기
+        // open() 메서드: window.open(경로, 창 이름, 창 옵션)
+        // document.addEventListener("DOMContentLoaded", () => {
+        //     this.addEventListener("click", function() {
+        //         window.open("_마무리문제(노드).html", "", "width=600 height=500");
+        //     });
+        // });
+   
+        function openPopup() {
+            window.open("_마무리문제(노드).html", "이벤트팝업", "width=600 height=500 left=300 top=200");
+        }            
+        const btn = document.querySelector("button");
+        btn.onclick = openPopup;
+    </script>
+</body>
+</html>
