@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>history, location객체</title>
+</head>
+<body>
+    <button onclick="location.replace('http://www.naver.com')">naver</button>
+    <script>
+        /*
+            [ history 객체 ]: 접근한 사이트 주소가 array 배열에 저장되어 있음
+            - length: 현재 웹 브라우저 창의 history 목록에 있는 항목의 개수. 즉, 방문했던 사이트 개수가 저장
+            - back(): history 목록에서 이전 페이지를 현재 화면에 불러옴
+            - forward(): history 목록에서 다음 페이지를 현재 화면에 불러옴.
+            - go(): history 목록에서 현재 페이지를 기준으로 상대적인 위치에 있는 페이지를 현재 화면에 불러옴.
+                    history.go(1)은 다음 페이지, history.go(-1)은 이전 페이지를 불러옴
+            
+            [ location 객체 ]: 현재 문서의 url 주소에 대한 정보를 가짐
+            - hash: url 중 #기호로 시작하는 해시 부분의 정보를 담음
+            - host: url의 호스트 이름과 포트 번호를 담음
+            - hostname: url의 호스트 이름을 저장
+            - href: 전체 url, 이 값을 변경하면 해당 주소로 이동
+            - password: 도메인 이름 앞에 'username'과 'password'를 함께 입력해서 접속하는 url일 경우 password정보가 저장됨
+            - pathname: url 경로를 저장
+            - port: url의 포트 번호를 담음
+            - protocol: url의 프로토콜을 저장
+            - search: url 중 ?로 시작하는 검색 내용을 저장
+            - username: 도메인의 이름 앞에 'username'을 함께 입력해서 접속하는 사이트 url일 경우 username 정보를 저장함
+            - assign: 현재 문서에 새 문서 주소를 할당해서 새 문서를 가져오는 메서드
+            - reload: 현재 문서를 다시 불러오는 메서드
+            - replace: 현재 문서의 url을 지우고 다른 url의 문서로 교체하는 메서드
+            - toString: 현재 문서의 url을 문자열로 반환하는 메서드
+        */
+    </script>
+</body>
+</html>
