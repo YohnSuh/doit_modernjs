@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date 객체</title>
+</head>
+<body>
+    <!--만보걷기-->
+    <p><span id="walk"></span>일 연속 달성</p>
+    <script>
+        /*
+            Date객체란,
+            날짜와 시간에 대한 정보를 조절할 수 있는 객체
+            - new Date(): date 객체의 인스턴스
+        */
+       let today = new Date();
+       console.log(today);
+       console.log(today.getDate()); // 오늘 날짜를 확인할 때 사용하는 getDate() 메서드
+
+       const day1 = new Date("2025-02-25");
+       const day2 = new Date(2025, 2, 25);
+       console.log(day1, day2); // 특정한 날짜를 저장한 Date객체를 만들 때는 날짜를 입력 
+
+       const time = new Date("2025-02-25T08:00:00");
+       console.log(time); // 특정한 시간을 저장할 경우 대문자 T를 붙이고 시간 입력
+
+        /*
+            [ 시간 입력 방식의 종류 ]
+            - YYYY-MM-DD: '연도-월-일' 형태, 연도나 월까지만 입력하여 사용가능
+            - YYYY-MM-DDTHH:MM:SS: '연도-월-일T시:분:초' 형태, 국제 표준시로 표시할 경우 끝에 Z를 붙임
+            - MM/DD/YYYY: 슬래시를 사용하여 월/일/연도 순으로 지정
+            - 전체형식: 월과 요일은 전체 이름이나 줄여쓴 이름 모두 사용 가능
+              ex. new Date("Thu Aug 17 2022 15:00:41 GMT+0900 (대한민국 표준시)")
+        */
+
+        /*
+            [ Date 객체의 메서드 ]
+            : 메서드 앞에 get이 붙어 있으면 시간이나 날짜를 알아내는 메서드이고, set이 붙어 있으면 시간과 날짜를
+              사용자가 원하는 대로 설정하는 메서드, to로 시작하면 국제 표준 형식으로 된 날짜 표시를 다른 형식으로 바꿔주는 메서드
+            
+            - getFullYear(): 현지 시간을 기준으로 연도값을 가져옴
+            - getMonth(): 월값을 가져오며, 0~11 사이의 숫자가 반환되는데 0은 1월이고 11은 12월
+            - getDate(): 일값을 가져오며, 1~31 사이의 숫자로 반환
+            - getDay(): 요일값을 가져오며, 0~6 사이의 숫자가 반환되는데 0은 일요일이고 6은 토요일
+            - getTime(): 1970년 1월 1일 00:00 이후의 시간을 밀리초로 표시
+            - getHours(): 시값을 가져오며, 0~23 사이의 숫자로 반환
+            - getMinutes(): 분값을 가져오며, 0~59 사이의 숫자로 반환
+            - getSeconds(): 초값을 가져오며, 0~59 사이의 숫자로 반환
+            - getMilliseconds(): 밀리초값을 가져오며, 0~999 사이의 숫자로 반환
+            - setFullYear(): 현지 시간을 기준으로 연도를 설정
+            - setMonth(): 현지 시간을 기준으로 월을 설정
+            - setDate(): 현지 시간을 기준으로 일을 설정
+            - setTime(): 1970년 1월 1일 00:00부터 지난 시간을 밀리초로 설정
+            - setHours(): 현지 시간을 기준으로 시를 설정
+            - setMinutes(): 현지 시간을 기준으로 분을 설정
+            - setSeconds(): 현지 시간을 기준으로 초를 설정
+            - setMilliseconds(): 현지 시간을 기준으로 밀리초를 설정
+            - toUTCString(): '요일 일 월 연도 시:분:초 UTC' 형식으로 표시
+            - toLocaleString(): '월/일/연도 시:분:초' 형식으로 표시
+            - toString(): '요일 월 날짜 시:분:초 UTC+대한민국 표준시' 형식으로 표시
+            - toDateString(): Date에서 날짜 부분만 표시
+            - toTimeString(): Date에서 시간 부분만 표시
+        */
+        // 만 보 걷기, 오늘까지 며칠째인지 알아내기
+        const walk = document.querySelector("#walk");
+        const firstDay = new Date("2021-07-01"); // 시작일
+        const nowWalk = new Date(); // 오늘 날짜
+
+        let passedTime = today.getTime() - firstDay.getTime();
+        let passedDay = Math.round(passedTime / (1000 * 60 * 60 * 24));
+
+        walk.innerText = passedDay;
+    </script>
+</body>
+</html>
